@@ -1,0 +1,216 @@
+/* Astraeus homepage hero. Prototype styles; in Webflow these sit on the classes named here.
+   Scale: --vw is 1% of the stage width (set by the bundle). Type scale (28 Oct): every text uses one level, written by the bundle
+   as --t-d1, --t-d2, --t-d3, --t-statement, --t-heading, --t-bodyl, --t-body, --t-caption (px, desktop and mobile values in
+   config.json, group "type"). --tsq, --tsc, --tsw, --clf, --mf are fit factors (1, or less on screens too short for the text). */
+:root{
+  --ax-midnight:#001334;
+  --ax-gold:#EAB358;
+  --ax-white:#FFFFFF;
+  --ax-display:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ax-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+html,body{margin:0;background:var(--ax-midnight);color:var(--ax-white)}
+body{font-family:var(--ax-body);overflow-x:hidden}
+
+/* ---------- Hero section (root) ---------- */
+.ax-root{position:relative;height:100vh;overflow:hidden;background:var(--ax-midnight)}
+.ax-stage{position:absolute;left:0;top:0;transform-origin:0 0;--vw:1vw;--tvw:1vw}
+.ax-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:pan-y}
+.ax-fallback{position:absolute;inset:0}
+
+.ax-hero-statement,.ax-question,.ax-copy,.ax-claims,.ax-cta-text,.ax-wwd,.ax-problem,.ax-solution{position:absolute;margin:0}
+/* The problem (H): title Display 3, paragraphs Body (28 Oct, reduced from Display 2 and Body large), gold on the darkened scene; Figma text boxes 1169 px wide (81.18), centred.
+   Title to text 45 px at 70 (0.64 of the title size); one line between the paragraphs */
+.ax-problem{left:50%;top:50%;transform:translateX(-50%);width:calc(var(--vw)*81.18);max-width:calc(var(--vw)*100 - 32px);text-align:center;
+  color:var(--ax-gold);opacity:0;pointer-events:none}
+.ax-problem-title{margin:0 0 calc(var(--t-d3)*0.64*var(--tsp,1));font:700 calc(var(--t-d3)*var(--tsp,1))/normal var(--ax-display);letter-spacing:0;text-wrap:balance}
+.ax-problem p{margin:0;font:400 calc(var(--t-body)*var(--tsp,1))/normal var(--ax-body);letter-spacing:0;text-wrap:pretty}
+.ax-problem p + p{margin-top:1.17em}
+.ax-problem .ax-br-d{display:inline}
+@media (max-width:767px){.ax-problem .ax-br-d{display:none}}
+/* Solution (I): same layout and levels as the problem; colours back to the normal scheme (white text) */
+.ax-solution{left:50%;top:50%;transform:translateX(-50%);width:calc(var(--vw)*81.18);max-width:calc(var(--vw)*100 - 32px);text-align:center;
+  color:var(--ax-white);opacity:0;pointer-events:none}
+.ax-solution-title{margin:0 0 calc(var(--t-d3)*0.64*var(--tss,1));font:700 calc(var(--t-d3)*var(--tss,1))/normal var(--ax-display);letter-spacing:0;text-wrap:balance}
+.ax-solution p{margin:0 auto;max-width:40em;font:400 calc(var(--t-body)*var(--tss,1))/normal var(--ax-body);letter-spacing:0;text-wrap:pretty}
+/* What we do (G): Space Grotesk 700, Display 3 (3 Nov, was Statement), text box 1169 px wide on 1440 (81.18), centred */
+.ax-wwd{left:50%;top:50%;transform:translateX(-50%);width:calc(var(--vw)*81.18);max-width:calc(var(--vw)*100 - 32px);
+  font:700 calc(var(--t-d3)*var(--wws,1)*var(--tsw,1))/normal var(--ax-display);letter-spacing:0;text-align:center;text-wrap:balance;
+  color:var(--ax-white);opacity:0;pointer-events:none}
+.ax-hero-statement{left:50%;top:58%;transform:translateX(-50%);width:max-content;max-width:calc(var(--vw)*100 - 32px);
+  font:700 var(--t-d2)/normal var(--ax-display);letter-spacing:0;text-align:center;color:var(--ax-white);pointer-events:none}
+.ax-question{left:50%;top:50%;transform:translateX(-50%);width:max-content;max-width:calc(var(--vw)*100 - 32px);
+  font:700 calc(var(--t-d1)*var(--tsq,1))/normal var(--ax-display);letter-spacing:0;text-align:center;text-wrap:balance;
+  color:var(--ax-white);opacity:0;pointer-events:none}
+
+/* E copy column: title and three blocks */
+.ax-copy{left:8%;top:30%;width:calc(var(--t-d3)*9*var(--tsc,1));max-width:calc(var(--vw)*100 - 32px);color:var(--ax-white);opacity:0;pointer-events:none}
+.ax-copy-title{margin:0 0 calc(var(--t-d3)*1.152*var(--tsc,1));width:max-content;max-width:calc(var(--vw)*100 - 32px);
+  font:700 calc(var(--t-d3)*var(--tsc,1))/normal var(--ax-display);letter-spacing:0;color:var(--ax-white)}
+.ax-copy-block h3{margin:0;font:700 calc(var(--t-heading)*var(--tsc,1))/normal var(--ax-display);letter-spacing:0;color:var(--ax-white)}
+.ax-copy-block p{margin:0;font:400 calc(var(--t-body)*var(--tsc,1))/normal var(--ax-body);letter-spacing:0;color:var(--ax-white)}
+.ax-copy-block + .ax-copy-block{margin-top:calc(var(--t-heading)*1.272*var(--tsc,1))}
+
+/* Result claims: three columns, note centred below. Column widths from Figma (329, 348, 394 px on 1440) */
+.ax-claims{inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;color:var(--ax-white);pointer-events:none;--clf:1}
+/* (3 Nov) desktop: the three claims spread evenly across the row: first and last on the row edges, equal gaps between */
+.ax-claims-row{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;width:calc(var(--vw)*89);align-items:start}
+.ax-claim{justify-self:center;width:calc(var(--vw)*22.847*var(--clf));text-align:center;opacity:0}
+.ax-claim:nth-child(2){width:calc(var(--vw)*24.167*var(--clf))}
+.ax-claim:nth-child(3){width:calc(var(--vw)*27.361*var(--clf))}
+.ax-claim-figure{margin:0;font:700 calc(var(--t-d3)*var(--clf))/normal var(--ax-display);letter-spacing:0;font-variant-numeric:tabular-nums}
+.ax-claim-line{margin:0;font:400 calc(var(--t-bodyl)*var(--clf))/normal var(--ax-body);letter-spacing:0;text-wrap:balance}
+/* footnote marker (3 Nov): placeholder asterisk at the end of each claim label; links to nothing yet */
+.ax-fn{font-size:0.85em;line-height:0;vertical-align:0.3em;margin-left:0.04em}
+.ax-claims-note{margin:calc(var(--t-caption)*2.448*var(--clf)) 0 0;width:calc(var(--vw)*77.5);
+  font:400 calc(var(--t-caption)*var(--clf))/normal var(--ax-body);text-align:center;color:var(--ax-white);opacity:0}
+
+/* Differentiators card (J, 4 Nov): solid navy surface that slides in over the scene; position, size, radius, shadow and the
+   slide are set by the bundle from config (group "differentiators"). Empty for now. */
+.ax-diff{position:absolute;left:0;top:0;box-sizing:border-box;background:var(--ax-midnight);visibility:hidden;pointer-events:none;will-change:transform}
+.ax-static .ax-diff{display:none}
+/* Card content (4 Nov, layout B): title Display 3 centred across the top; the text block sits in the left third of the card, inset
+   --dpad from the card's left edge and vertically centred in the space below the title; the right two-thirds stay clear for the
+   visualisations. Block: heading Body large in the display face, text Caption. Mobile: the block takes the full card width. */
+.ax-diff{color:var(--ax-white);overflow:hidden;display:flex;flex-direction:column}
+.ax-diff-title{margin:0;padding:var(--dpadT,80px) var(--dpad,80px) 0;text-align:center;
+  font:700 var(--dtitle,var(--t-d3))/normal var(--ax-display);letter-spacing:0;text-wrap:balance}
+.ax-diff-block{position:absolute;left:var(--dpad,80px);top:50%;transform:translateY(-50%);margin:0;width:calc(100% / 3 - var(--dpad,80px))}
+.ax-diff-block h3{margin:0 0 .64em;font:700 var(--t-bodyl)/normal var(--ax-display);letter-spacing:0}
+.ax-diff-block p{margin:0;font:400 var(--t-caption)/normal var(--ax-body);letter-spacing:0}
+.ax-mobile .ax-diff-block{position:static;transform:none;text-align:center;margin:var(--vgap,16px) var(--dpad,8px) 0;width:calc(100% - 2 * var(--dpad,8px))}   /* mobile: pushed to the top, below the title */
+/* Visual (4 Nov, placeholder image): desktop fills the right two-thirds below the title, with --vgap of space on every side;
+   mobile sits below the text block and fills the rest of the card. The image keeps its proportions (contain). */
+.ax-diff-vis{flex:1 1 auto;min-height:0;margin:var(--vgap,80px) var(--vgap,80px) var(--vgap,80px) calc(100% / 3 + var(--vgap,80px));display:flex;align-items:center;justify-content:center}
+.ax-mobile .ax-diff-vis{margin:var(--vgap,16px) var(--dpad,8px) 0}
+/* (5 Nov) J3 graph: drawn on the whole card, behind the text and buttons, so it is never cut before the card edge. The empty
+   .ax-diff-vis is only a guide: where the graph sits and what graph size 1 fills (the right part of the card on desktop,
+   below the text on mobile). */
+.ax-diff-graph{position:absolute;left:0;top:0;display:block;pointer-events:none;z-index:0}
+.ax-diff-title{position:relative;z-index:1}
+.ax-diff-block{z-index:1}
+.ax-mobile .ax-diff-block{position:relative;left:auto;top:auto}
+/* (5 Nov) step counter (after BlueYard Capital "Computation & Intelligence"): one outlined box, the step number large and light with
+   the total small at its top right, and a column of two arrow cells (previous above, next below). Desktop: bottom left of the
+   card, aligned with the text block; mobile: below the graph, inset by the side inset. Arrows have no action yet. */
+.ax-diff-step{position:absolute;left:var(--dpad,80px);bottom:var(--dpad,80px);z-index:1;display:inline-flex;box-sizing:border-box;height:80px;border:1px solid rgba(255,255,255,.3);color:var(--ax-white);pointer-events:auto}
+.ax-mobile .ax-diff-step{position:relative;left:auto;bottom:auto;flex:0 0 auto;align-self:flex-start;margin:var(--vgap,16px) var(--dpad,16px) var(--dpad,16px)}
+.ax-step-count{position:relative;display:flex;align-items:flex-end;padding:0 48px 8px 12px;font:300 60px/1 var(--ax-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.ax-step-total{position:absolute;top:16px;right:12px;font:400 14px/1 var(--ax-body);letter-spacing:0;opacity:.8}
+.ax-step-arrows{display:flex;flex-direction:column;width:38px;border-left:1px solid rgba(255,255,255,.3)}
+.ax-step-btn{flex:1 1 0;display:flex;align-items:center;justify-content:center;margin:0;padding:0;border:0;background:transparent;color:var(--ax-white);cursor:pointer;transition:background-color .2s ease-out}
+.ax-step-btn + .ax-step-btn{border-top:1px solid rgba(255,255,255,.3)}
+.ax-step-btn:hover{background:rgba(255,255,255,.06)}
+.ax-step-btn:active{background:rgba(255,255,255,.12)}
+.ax-step-btn:focus-visible{outline:2px solid var(--ax-gold);outline-offset:-2px}
+.ax-step-btn svg{display:block}
+.ax-step-btn:disabled{opacity:.4;cursor:not-allowed}
+.ax-step-btn:disabled:hover{background:transparent}
+.ax-diff-block[data-ax-step]:not(.is-active){visibility:hidden;pointer-events:none}   /* (5 Nov) one step's copy at a time; (11 Nov) hidden, not removed, so the next one can fade in */
+
+/* ---------- Text CTA "Scroll to explore" (CTA spec, 26 Oct) ----------
+   Space Grotesk 700 at 40/70 of the hero statement (size set by the bundle); mouse cue; 44 px tap target */
+.ax-cta-text{left:50%;transform:translateX(-50%);display:block;padding:.25em .5em;min-height:44px;font:700 16px/normal var(--ax-display);
+  letter-spacing:0;white-space:nowrap;color:var(--ax-white);background:none;border:0;border-radius:4px;cursor:pointer;
+  transition:transform .1s ease-out}
+.ax-cta-label{background:linear-gradient(currentColor,currentColor) 50% 100%/0 1px no-repeat;padding-bottom:.08em;transition:background-size .2s ease-out}
+.ax-cta-text:hover .ax-cta-label{background-size:100% 1px}
+.ax-mouse{display:block;position:relative;width:.62em;height:.97em;margin:.5em auto 0;border:2px solid var(--ax-white);border-radius:.36em;box-sizing:border-box}
+.ax-mouse::after{content:"";position:absolute;left:50%;top:.17em;width:2px;height:.18em;margin-left:-1px;border-radius:1px;background:var(--ax-white);
+  animation:ax-wheel 1.6s cubic-bezier(.6,0,.4,1) infinite}
+.ax-cta-text:hover .ax-mouse::after{animation-duration:1s}
+.ax-cta-text:focus-visible{outline:2px solid var(--ax-gold);outline-offset:4px;box-shadow:0 0 0 6px var(--ax-midnight)}
+.ax-cta-text:active{transform:translateX(-50%) scale(.98)}
+.ax-cta-text:disabled,.ax-cta-text[aria-disabled="true"]{opacity:.4;cursor:not-allowed;pointer-events:none}
+@keyframes ax-wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(.28em);opacity:0}100%{transform:translateY(0);opacity:0}}
+
+/* ---------- Header ---------- */
+.ax-header{position:fixed;inset:0 0 auto;height:0;z-index:20}
+/* The wordmark is drawn in the 3D scene; this link sits over it (position set by the bundle) and holds the accessible name.
+   Its SVG is the source the bundle reads (rebrand swap: replace the paths). It shows only when WebGL is unavailable. */
+.ax-logo{position:fixed;left:0;top:0;display:block;border-radius:4px;color:var(--ax-white)}
+.ax-logo svg{display:block;width:100%;height:100%;fill:currentColor;opacity:0}
+.ax-logo:focus-visible{outline:2px solid var(--ax-gold);outline-offset:4px;box-shadow:0 0 0 6px var(--ax-midnight)}
+.ax-static-page .ax-logo svg{opacity:1}
+
+.ax-menu-toggle,.ax-menu-close{position:fixed;top:0;right:0;width:44px;height:44px;padding:0;border:0;border-radius:4px;background:none;cursor:pointer;
+  transition:opacity .25s ease-out,transform .1s ease-out}
+.ax-menu-toggle{opacity:0;visibility:hidden}
+.ax-bar{position:absolute;left:10px;width:24px;height:2px;border-radius:1px;background:var(--ax-white)}
+.ax-menu-toggle .ax-bar:nth-child(1){top:17px}
+.ax-menu-toggle .ax-bar:nth-child(2){top:25px}
+.ax-menu-close .ax-bar{top:21px}
+.ax-menu-close .ax-bar:nth-child(1){transform:rotate(45deg)}
+.ax-menu-close .ax-bar:nth-child(2){transform:rotate(-45deg)}
+.ax-menu-toggle:focus-visible,.ax-menu-close:focus-visible{outline:2px solid var(--ax-gold);outline-offset:4px;box-shadow:0 0 0 6px var(--ax-midnight)}
+.ax-menu-toggle:active,.ax-menu-close:active{transform:scale(.98)}
+
+/* ---------- Overlay menu ---------- */
+.ax-menu{position:fixed;z-index:30;inset:0;background:rgba(0,19,52,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  opacity:0;transition:opacity .25s ease-out}
+.ax-menu.is-open{opacity:1}
+.ax-menu-logo{position:absolute;fill:var(--ax-white)}
+.ax-menu-nav{position:absolute;left:0;top:0}
+.ax-menu-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.15em}
+.ax-menu-list a{display:inline-block;padding:.08em 0;font:700 calc(var(--t-d3,58px)*var(--mf,1))/1.15 var(--ax-display);letter-spacing:0;
+  color:var(--ax-white);text-decoration:none;opacity:0;transform:translateY(12px);border-radius:4px;
+  background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;
+  transition:opacity .3s ease-out,transform .3s ease-out,color .2s ease-out,background-size .2s ease-out}
+.ax-menu.is-open .ax-menu-list a{opacity:1;transform:none}
+.ax-menu.is-open li:nth-child(2) a{transition-delay:.04s}
+.ax-menu.is-open li:nth-child(3) a{transition-delay:.08s}
+.ax-menu.is-open li:nth-child(4) a{transition-delay:.12s}
+.ax-menu-list a:hover{background-size:100% 2px}
+.ax-menu-list a[aria-current="page"]{color:var(--ax-gold)}
+.ax-menu-list a:focus-visible{outline:2px solid var(--ax-gold);outline-offset:4px;box-shadow:0 0 0 6px var(--ax-midnight)}
+
+/* ---------- Mobile profile (767 px and below; class set by the bundle) ----------
+   Text sizes come from the mobile values of the type levels.
+   The copy column takes the full width; the claims stack in one column. */
+.ax-mobile .ax-copy{width:calc(var(--vw)*100 - 32px)}
+.ax-mobile .ax-claims-row{grid-template-columns:1fr;justify-content:normal;row-gap:calc(var(--t-caption)*2.448*var(--clf));width:calc(var(--vw)*100 - 32px)}
+.ax-mobile .ax-claim,.ax-mobile .ax-claim:nth-child(2),.ax-mobile .ax-claim:nth-child(3){width:100%;justify-self:stretch}
+.ax-mobile .ax-claims-note{width:calc(var(--vw)*100 - 32px)}
+.ax-mobile .ax-wwd{font-size:calc(var(--t-statement)*var(--tsw,1))}   /* What we do: Display 3 on desktop, Statement on mobile (3 Nov) */
+/* Scroll cue on touch screens: a phone outline instead of the mouse; the stroke inside travels up like a swipe.
+   Same stroke, colour and timing as the mouse cue (CTA spec) */
+.ax-mobile .ax-mouse{width:.56em;height:1.02em;border-radius:.16em}
+.ax-mobile .ax-mouse::after{top:auto;bottom:.2em;animation-name:ax-swipe}
+@keyframes ax-swipe{0%{transform:translateY(0);opacity:1}70%{transform:translateY(-.34em);opacity:0}100%{transform:translateY(0);opacity:0}}
+
+/* ---------- Static layout (fallback: no WebGL, reduced motion, low frame rate; classes set by the bundle) ----------
+   The hero becomes a normal section: no pin, no scene, every text visible in reading order. The header scrolls with the page. */
+.ax-static-page .ax-header{position:absolute}
+.ax-static-page .ax-logo,.ax-static-page .ax-menu-toggle{position:absolute}
+.ax-static{height:auto;overflow:visible}
+.ax-static .ax-stage{position:relative;transform:none;padding-inline:max(16px,calc(var(--vw)*3.5));padding-bottom:calc(var(--tvw)*10)}
+.ax-static .ax-canvas{display:none}
+.ax-static .ax-hero-statement,.ax-static .ax-cta-text,.ax-static .ax-question,.ax-static .ax-copy,.ax-static .ax-claims,.ax-static .ax-wwd,.ax-static .ax-problem,.ax-static .ax-solution{position:relative;left:auto;top:auto;inset:auto;transform:none;opacity:1;filter:none;max-width:100%}
+.ax-static .ax-hero-statement{margin:max(160px,40vh) auto 0;width:auto;font-size:var(--t-d2)}
+.ax-static .ax-cta-text{margin:calc(var(--t-d2)*.5714*.325) auto 0;font-size:calc(var(--t-d2)*.5714)}
+.ax-static .ax-question{margin:calc(var(--tvw)*20) auto 0;width:auto}
+.ax-static .ax-wwd{margin:calc(var(--tvw)*16) auto 0;width:auto}
+.ax-static .ax-problem{margin:calc(var(--tvw)*16) auto 0;width:auto}
+.ax-static .ax-solution{margin:calc(var(--tvw)*16) auto 0;width:auto}
+.ax-static .ax-copy{margin-top:calc(var(--tvw)*16)}
+.ax-static .ax-copy-title,.ax-static .ax-copy-block,.ax-static .ax-claim,.ax-static .ax-claims-note{opacity:1;filter:none;transform:none}
+.ax-static .ax-claims{margin-top:calc(var(--tvw)*14);padding:0}
+.ax-static .ax-claim-figure,.ax-static .ax-claim-line{opacity:1}
+
+@media (prefers-reduced-motion:reduce){
+  .ax-mouse::after{animation:none}
+  .ax-menu,.ax-menu-list a,.ax-menu-toggle{transition:none}
+}
+
+/* (10 Nov) mobile J: every step's copy keeps its place in the layout (hidden, out of flow), so the tallest one sets where the graph
+   starts and the graph does not jump between steps */
+.ax-mobile .ax-diff-block[data-ax-step]:not(.is-active){display:block;position:absolute;visibility:hidden;pointer-events:none}
+/* (10 Nov) mobile counter: one row across the card; number and total the same size; the two arrows side by side */
+.ax-mobile .ax-diff-step{align-self:stretch;height:56px;margin:var(--vgap,16px) var(--dpad,16px) var(--dpad,16px)}
+.ax-mobile .ax-step-count{flex:1 1 auto;align-items:center;padding:0 16px;font:300 28px/1 var(--ax-display);letter-spacing:-.02em}
+.ax-mobile .ax-step-total{position:static;margin-left:.3em;font:300 28px/1 var(--ax-display);letter-spacing:-.02em;opacity:.5}
+.ax-mobile .ax-step-arrows{flex-direction:row;width:auto}
+.ax-mobile .ax-step-btn{flex:0 0 56px;width:56px}
+.ax-mobile .ax-step-btn + .ax-step-btn{border-top:0;border-left:1px solid rgba(255,255,255,.3)}
+

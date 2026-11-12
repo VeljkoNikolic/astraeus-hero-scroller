@@ -1,0 +1,8 @@
+/* Touch devices only: nothing on the page can scroll natively; the hero bundle moves [data-ax=scroller] itself (BlueYard-style) */
+@media (hover: none) and (pointer: coarse) {
+  html, body { height: 100%; overflow: hidden; overscroll-behavior: none; touch-action: none; }
+  [data-ax="scroller"] { position: fixed; inset: 0; overflow: hidden; overscroll-behavior: none; touch-action: none; }
+  /* static fallback (reduced motion, no WebGL, slow device): normal scrolling inside the scroller */
+  .ax-static-page, .ax-static-page body { touch-action: auto; }
+  .ax-static-page [data-ax="scroller"] { overflow-y: auto; touch-action: pan-y; }
+}
